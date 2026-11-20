@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweeat Pircuy — Artisan Bakery & Pastry</title>
+    
+    <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration for Custom Bakery Palette & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FDF8F5',
+                            100: '#FAF3EE',
+                            200: '#F3E5DC',
+                        },
+                        caramel: {
+                            400: '#B07D4F',
+                            500: '#8B5A2B',
+                            600: '#6F4E37',
+                            700: '#543927',
+                        },
+                        cocoa: {
+                            800: '#3E2723',
+                            900: '#2A1A17',
+                        },
+                        pastelpink: {
+                            100: '#FCEEEF',
+                            200: '#F8D7DA',
+                            300: '#F4C2C2',
+                            400: '#E8A598',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -5px rgba(62, 39, 35, 0.06)',
+                        'warm': '0 15px 35px -5px rgba(139, 90, 43, 0.12)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for subtle animations and scrollbar -->
+    <style>
+        body {
+            background-color: #FDF8F5;
+            color: #3E2723;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .font-serif-title {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* Smooth image zoom on card hover */
+        .product-card:hover .product-img {
+            transform: scale(1.06);
+        }
+        .product-img {
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF3EE;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D7B89C;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8B5A2B;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pastelpink-300 selection:text-cocoa-800">
+
+    <!-- ==================== 1. NAVBAR (STICKY & RESPONSIVE) ==================== -->
+    <header id="navbar" class="sticky top-0 z-50 bg-cream-50/90 backdrop-blur-md border-b border-cream-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Kiri: Logo Sweeat Pircuy + Ikon Croissant Minimalis -->
+                <a href="#home" class="flex items-center gap-2.5 group focus:outline-none">
+                    <div class="w-10 h-10 rounded-2xl bg-pastelpink-200/80 flex items-center justify-center text-caramel-600 group-hover:bg-pastelpink-300 transition-colors">
+                        <!-- Minimalist Croissant / Bakery SVG Icon -->
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4.6 13.11a3 3 0 0 0-1.1 4.1 3.5 3.5 0 0 0 4.8 1.29l1.2-.7"/>
+                            <path d="M19.4 13.11a3 3 0 0 1 1.1 4.1 3.5 3.5 0 0 1-4.8 1.29l-1.2-.7"/>
+                            <path d="M8.5 16.5c-1.5-2.5-1.5-6.5 0-9 1.5-2.5 5.5-2.5 7 0 1.5 2.5 1.5 6.5 0 9-1.5 2.5-5.5 2.5-7 0Z"/>
+                            <path d="M7.5 10.5c-2.5-.5-4.5.5-5 2.5"/>
+                            <path d="M16.5 10.5c2.5-.5 4.5.5 5 2.5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif-title text-2xl font-bold tracking-tight text-cocoa-800 block leading-none">
+                            Sweeat <span class="text-caramel-500 italic">Pircuy</span>
+                        </span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-caramel-400 font-semibold">Artisan Bakery</span>
+                    </div>
+                </a>
+
+                <!-- Tengah: Menu Navigasi Desktop -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium text-cocoa-800 hover:text-caramel-500 transition-colors">Home</a>
+                    <a href="#menu" class="text-sm font-medium text-cocoa-800 hover:text-caramel-500 transition-colors">Menu</a>
+                    <a href="#tentang" class="text-sm font-medium text-cocoa-800 hover:text-caramel-500 transition-colors">Tentang Kami</a>
+                    <a href="#testimoni" class="text-sm font-medium text-cocoa-800 hover:text-caramel-500 transition-colors">Testimoni</a>
+                    <a href="#lokasi" class="text-sm font-medium text-cocoa-800 hover:text-caramel-500 transition-colors">Lokasi</a>
+                </nav>
+
+                <!-- Kanan: CTA Pesan Sekarang + Mobile Hamburger -->
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/6281234567890?text=Halo%20Sweeat%20Pircuy,%20saya%20ingin%20memesan%20roti" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="hidden sm:inline-flex items-center gap-2 bg-caramel-500 hover:bg-caramel-600 text-cream-50 text-sm font-semibold px-5 py-2.5 rounded-full shadow-soft hover:shadow-warm transition-all duration-300 transform hover:-translate-y-0.5">
+                        <!-- WhatsApp Icon -->
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+                        </svg>
+                        <span>Pesan Sekarang</span>
+                    </a>
+
+                    <!-- Mobile Menu Toggle Button -->
+                    <button id="mobile-menu-btn" type="button" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl bg-cream-100 text-cocoa-800 hover:bg-pastelpink-200 transition-colors focus:outline-none">
+                        <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-b border-cream-200 px-4 pt-3 pb-6 space-y-2 shadow-soft">
+            <a href="#home" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-cocoa-800 hover:bg-cream-100">Home</a>
+            <a href="#menu" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-cocoa-800 hover:bg-cream-100">Menu Unggulan</a>
+            <a href="#tentang" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-cocoa-800 hover:bg-cream-100">Tentang Kami</a>
+            <a href="#testimoni" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-cocoa-800 hover:bg-cream-100">Testimoni</a>
+            <a href="#lokasi" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-cocoa-800 hover:bg-cream-100">Lokasi & Kontak</a>
+            <div class="pt-2">
+                <a href="https://wa.me/6281234567890?text=Halo%20Sweeat%20Pircuy,%20saya%20ingin%20memesan%20roti" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="w-full flex items-center justify-center gap-2 bg-caramel-500 hover:bg-caramel-600 text-cream-50 font-semibold px-5 py-3 rounded-full shadow-soft">
+                    <span>Pesan Sekarang via WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <section id="home" class="relative min-h-[88vh] flex items-center overflow-hidden">
+        <!-- Background Image with Warm Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1920&q=85" 
+                 alt="Aneka Roti dan Pastry Hangat Sweeat Pircuy" 
+                 onerror="this.src='https://placehold.co/1920x1080/FAF3EE/8B5A2B?text=Sweeat+Pircuy+Bakery'"
+                 class="w-full h-full object-cover object-center">
+            <!-- Gradient Overlay: Krem lembut di kiri ke cokelat hangat transparan di kanan -->
+            <div class="absolute inset-0 bg-gradient-to-r from-cream-50/95 via-cream-50/85 to-cocoa-900/40 sm:via-cream-50/75"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-cream-50 via-transparent to-transparent"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 w-full">
+            <div class="max-w-2xl">
+                <!-- Badge Kecil -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pastelpink-200/90 border border-pastelpink-300 text-cocoa-800 text-xs sm:text-sm font-semibold mb-6 shadow-sm">
+                    <span>Freshly Baked Everyday ✨</span>
+                </div>
+
+                <!-- Headline Utama -->
+                <h1 class="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-bold text-cocoa-800 leading-[1.15] mb-6">
+                    Manisnya Setiap Gigitan, <span class="text-caramel-500 italic">Hangatnya</span> Kebersamaan.
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-base sm:text-lg text-cocoa-800/85 leading-relaxed mb-8 max-w-xl">
+                    Nikmati kelezatan roti dan pastry artisan buatan tangan yang dipanggang segar setiap pagi menggunakan mentega murni pilihan, menghadirkan aroma hangat dan kelembutan di setiap lapisan.
+                </p>
+
+                <!-- Tombol CTA Utama & Sekunder -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a href="#menu" class="inline-flex items-center justify-center gap-2 bg-caramel-500 hover:bg-caramel-600 text-cream-50 font-semibold px-8 py-4 rounded-full shadow-warm transition-all duration-300 transform hover:-translate-y-0.5 text-center">
+                        <span>Lihat Menu</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </a>
+                    <a href="#hampers" class="inline-flex items-center justify-center gap-2 bg-cream-50/90 hover:bg-pastelpink-100 text-cocoa-800 border-2 border-pastelpink-300 font-semibold px-8 py-4 rounded-full shadow-soft transition-all duration-300 text-center">
+                        <span>Pesan Custom Cake</span>
+                    </a>
+                </div>
+
+                <!-- Mini Trust Badges -->
+                <div class="mt-10 pt-6 border-t border-cocoa-800/10 flex flex-wrap items-center gap-6 text-xs sm:text-sm font-medium text-cocoa-800/80">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-caramel-500"></span>
+                        <span>100% Pure Butter</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-pastelpink-400"></span>
+                        <span>Tanpa Bahan Pengawet</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-caramel-500"></span>
+                        <span>Halal & Higienis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. MENU UNGGULAN (BEST SELLER) ==================== -->
+    <section id="menu" class="py-20 md:py-28 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-[0.25em] text-caramel-500 font-bold block mb-2">Pilihan Favorit Pelanggan</span>
+                <h2 class="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-bold text-cocoa-800 mb-4">
+                    Menu Unggulan Kami
+                </h2>
+                <p class="text-cocoa-800/75 text-sm sm:text-base">
+                    Dipanggang dalam jumlah terbatas setiap hari untuk menjaga kesegaran tekstur renyah di luar dan lembut lumer di dalam.
+                </p>
+            </div>
+
+            <!-- Filter Kategori Interaktif -->
+            <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-12" id="category-filters">
+                <button data-filter="all" class="filter-btn active px-5 py-2.5 rounded-full text-sm font-semibold bg-caramel-500 text-cream-50 shadow-soft transition-all">
+                    Semua Menu
+                </button>
+                <button data-filter="pastry" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-cream-100 text-cocoa-800 hover:bg-pastelpink-200 transition-all">
+                    Viennoiserie & Pastry
+                </button>
+                <button data-filter="bun" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-cream-100 text-cocoa-800 hover:bg-pastelpink-200 transition-all">
+                    Soft Bread & Bun
+                </button>
+                <button data-filter="cake" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-cream-100 text-cocoa-800 hover:bg-pastelpink-200 transition-all">
+                    Tart & Cheesecake
+                </button>
+            </div>
+
+            <!-- Grid 6 Kartu Produk -->
+            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Produk 1: Croissant Cokelat Lumer -->
+                <article data-category="pastry" class="product-card bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-warm border border-cream-200/80 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="relative h-64 overflow-hidden bg-cream-100">
+                            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Croissant Cokelat Lumer"
+                                 onerror="this.src='https://placehold.co/800x600/FAF3EE/8B5A2B?text=Croissant+Cokelat'"
+                                 class="product-img w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-bold bg-pastelpink-200 text-cocoa-800 shadow-sm">
+                                Terlaris 🔥
+                            </span>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <div class="flex justify-between items-start gap-2 mb-2">
+                                <h3 class="font-serif-title text-xl font-bold text-cocoa-800">Croissant Cokelat Lumer</h3>
+                            </div>
+                            <p class="text-sm text-cocoa-800/70 line-clamp-2 leading-relaxed">
+                                Puff pastry renyah 27 lapisan beraroma butter Prancis dengan isian dark Belgian chocolate yang lumer hangat.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-cream-100 mt-2">
+                        <div>
+                            <span class="text-[11px] text-cocoa-800/50 block">Harga Satuan</span>
+                            <span class="text-lg font-bold text-caramel-600">Rp 28.000</span>
+                        </div>
+                        <button onclick="openOrderModal('Croissant Cokelat Lumer', 28000)" 
+                                class="inline-flex items-center gap-1.5 bg-caramel-500 hover:bg-caramel-600 text-cream-50 text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer">
+                            <span>Pesan</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Produk 2: Classic Cinnamon Roll -->
+                <article data-category="bun" class="product-card bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-warm border border-cream-200/80 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="relative h-64 overflow-hidden bg-cream-100">
+                            <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Classic Cinnamon Roll"
+                                 onerror="this.src='https://placehold.co/800x600/FAF3EE/8B5A2B?text=Cinnamon+Roll'"
+                                 class="product-img w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-bold bg-cream-100 text-caramel-600 border border-caramel-400/30 shadow-sm">
+                                Favorit ⭐
+                            </span>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <h3 class="font-serif-title text-xl font-bold text-cocoa-800 mb-2">Classic Cinnamon Roll</h3>
+                            <p class="text-sm text-cocoa-800/70 line-clamp-2 leading-relaxed">
+                                Gulungan roti brioche super lembut dengan gula palem kayu manis aromatik dan siraman cream cheese frosting.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-cream-100 mt-2">
+                        <div>
+                            <span class="text-[11px] text-cocoa-800/50 block">Harga Satuan</span>
+                            <span class="text-lg font-bold text-caramel-600">Rp 26.000</span>
+                        </div>
+                        <button onclick="openOrderModal('Classic Cinnamon Roll', 26000)" 
+                                class="inline-flex items-center gap-1.5 bg-caramel-500 hover:bg-caramel-600 text-cream-50 text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer">
+                            <span>Pesan</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Produk 3: Thai Milk Bun Cream -->
+                <article data-category="bun" class="product-card bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-warm border border-cream-200/80 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="relative h-64 overflow-hidden bg-cream-100">
+                            <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Thai Milk Bun Cream"
+                                 onerror="this.src='https://placehold.co/800x600/FAF3EE/8B5A2B?text=Thai+Milk+Bun'"
+                                 class="product-img w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-bold bg-pastelpink-200 text-cocoa-800 shadow-sm">
+                                Terlaris 🔥
+                            </span>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <h3 class="font-serif-title text-xl font-bold text-cocoa-800 mb-2">Thai Milk Bun Cream</h3>
+                            <p class="text-sm text-cocoa-800/70 line-clamp-2 leading-relaxed">
+                                Roti susu Jepang selembut awan dengan isian krim vanila melimpah dan taburan susu bubuk manis premium.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-cream-100 mt-2">
+                        <div>
+                            <span class="text-[11px] text-cocoa-800/50 block">Isi 3 Pcs / Box</span>
+                            <span class="text-lg font-bold text-caramel-600">Rp 35.000</span>
+                        </div>
+                        <button onclick="openOrderModal('Thai Milk Bun Cream (Box isi 3)', 35000)" 
+                                class="inline-flex items-center gap-1.5 bg-caramel-500 hover:bg-caramel-600 text-cream-50 text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer">
+                            <span>Pesan</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Produk 4: Mixed Berry Fruit Tart -->
+                <article data-category="cake" class="product-card bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-warm border border-cream-200/80 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="relative h-64 overflow-hidden bg-cream-100">
+                            <img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Mixed Berry Fruit Tart"
+                                 onerror="this.src='https://placehold.co/800x600/FAF3EE/8B5A2B?text=Mixed+Berry+Tart'"
+                                 class="product-img w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-bold bg-pastelpink-300 text-cocoa-800 shadow-sm">
+                                Segar ✨
+                            </span>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <h3 class="font-serif-title text-xl font-bold text-cocoa-800 mb-2">Mixed Berry Fruit Tart</h3>
+                            <p class="text-sm text-cocoa-800/70 line-clamp-2 leading-relaxed">
+                                Kulit pie renyah dengan krim diplomat vanila Madagaskar serta topping stroberi, blueberry, dan raspberry segar.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-cream-100 mt-2">
+                        <div>
+                            <span class="text-[11px] text-cocoa-800/50 block">Harga Satuan</span>
+                            <span class="text-lg font-bold text-caramel-600">Rp 32.000</span>
+                        </div>
+                        <button onclick="openOrderModal('Mixed Berry Fruit Tart', 32000)" 
+                                class="inline-flex items-center gap-1.5 bg-caramel-500 hover:bg-caramel-600 text-cream-50 text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer">
+                            <span>Pesan</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Produk 5: Pistachio Cromboloni -->
+                <article data-category="pastry" class="product-card bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-warm border border-cream-200/80 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="relative h-64 overflow-hidden bg-cream-100">
+                            <img src="https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Pistachio Cromboloni"
+                                 onerror="this.src='https://placehold.co/800x600/FAF3EE/8B5A2B?text=Pistachio+Cromboloni'"
+                                 class="product-img w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-bold bg-caramel-500 text-cream-50 shadow-sm">
+                                Baru 🌟
+                            </span>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <h3 class="font-serif-title text-xl font-bold text-cocoa-800 mb-2">Pistachio Cromboloni</h3>
+                            <p class="text-sm text-cocoa-800/70 line-clamp-2 leading-relaxed">
+                                Perpaduan croissant bulat super renyah dengan isian krim pistachio panggang asli dan taburan kacang gurih.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-cream-100 mt-2">
+                        <div>
+                            <span class="text-[11px] text-cocoa-800/50 block">Harga Satuan</span>
+                            <span class="text-lg font-bold text-caramel-600">Rp 34.000</span>
+                        </div>
+                        <button onclick="openOrderModal('Pistachio Cromboloni', 34000)" 
+                                class="inline-flex items-center gap-1.5 bg-caramel-500 hover:bg-caramel-600 text-cream-50 text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer">
+                            <span>Pesan</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Produk 6: Burnt Basque Cheesecake -->
+                <article data-category="cake" class="product-card bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-warm border border-cream-200/80 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="relative h-64 overflow-hidden bg-cream-100">
+                            <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Burnt Basque Cheesecake"
+                                 onerror="this.src='https://placehold.co/800x600/FAF3EE/8B5A2B?text=Burnt+Cheesecake'"
+                                 class="product-img w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-bold bg-cream-100 text-caramel-600 border border-caramel-400/30 shadow-sm">
+                                Favorit ⭐
+                            </span>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <h3 class="font-serif-title text-xl font-bold text-cocoa-800 mb-2">Burnt Basque Cheesecake</h3>
+                            <p class="text-sm text-cocoa-800/70 line-clamp-2 leading-relaxed">
+                                Cheesecake panggang khas Spanyol dengan permukaan karamel eksotis dan bagian tengah creamy lembut yang lumer di mulut.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-cream-100 mt-2">
+                        <div>
+                            <span class="text-[11px] text-cocoa-800/50 block">Per Slice</span>
+                            <span class="text-lg font-bold text-caramel-600">Rp 38.000</span>
+                        </div>
+                        <button onclick="openOrderModal('Burnt Basque Cheesecake (Slice)', 38000)" 
+                                class="inline-flex items-center gap-1.5 bg-caramel-500 hover:bg-caramel-600 text-cream-50 text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer">
+                            <span>Pesan</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. TENTANG KAMI (OUR STORY) ==================== -->
+    <section id="tentang" class="py-20 md:py-28 bg-cream-100/80 border-y border-cream-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Kolom Kiri: Gambar Suasana Dapur Bakery -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative rounded-[2rem] overflow-hidden shadow-warm border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Proses Pembuatan Roti Sweeat Pircuy"
+                             onerror="this.src='https://placehold.co/1000x800/FAF3EE/8B5A2B?text=Dapur+Sweeat+Pircuy'"
+                             class="w-full h-[400px] sm:h-[480px] object-cover">
+                    </div>
+                    <!-- Floating Decorative Card -->
+                    <div class="hidden sm:flex items-center gap-4 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-warm border border-pastelpink-200 absolute -bottom-6 -right-6 max-w-xs">
+                        <div class="w-12 h-12 rounded-xl bg-pastelpink-200 flex items-center justify-center text-caramel-600 shrink-0 font-serif-title font-bold text-xl">
+                            05:00
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-caramel-500">Setiap Pagi</p>
+                            <p class="text-sm font-medium text-cocoa-800">Oven mulai menyala demi kesegaran roti pertama Anda.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Cerita & 3 Keunggulan -->
+                <div class="lg:col-span-6">
+                    <span class="text-xs uppercase tracking-[0.25em] text-caramel-500 font-bold block mb-2">Cerita Kami</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-bold text-cocoa-800 leading-tight mb-6">
+                        Dibuat dengan Cinta, Kesabaran, dan Bahan Terbaik.
+                    </h2>
+                    <p class="text-cocoa-800/80 text-base leading-relaxed mb-4">
+                        Berawal dari dapur kecil yang penuh kehangatan, <strong>Sweeat Pircuy</strong> hadir dengan satu keyakinan sederhana: roti yang enak lahir dari bahan baku jujur tanpa jalan pintas.
+                    </p>
+                    <p class="text-cocoa-800/80 text-base leading-relaxed mb-8">
+                        Kami menggunakan 100% mentega murni (<em>pure butter</em>), tepung berprotein tinggi pilihan, serta cokelat dan buah segar berkualitas. Tanpa bahan pengawet maupun pelembut buatan, setiap loyang selalu dipanggang <em>fresh from the oven</em> setiap hari.
+                    </p>
+
+                    <!-- 3 Poin Keunggulan dengan Ikon Cantik -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- Keunggulan 1 -->
+                        <div class="bg-cream-50 p-4 rounded-2xl border border-cream-200 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-pastelpink-200/80 text-caramel-600 flex items-center justify-center mb-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-cocoa-800 text-base mb-1">100% Pure Butter</h3>
+                            <p class="text-xs text-cocoa-800/70 leading-relaxed">Aroma wangi alami & tekstur pastry berlapis renyah.</p>
+                        </div>
+
+                        <!-- Keunggulan 2 -->
+                        <div class="bg-cream-50 p-4 rounded-2xl border border-cream-200 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-pastelpink-200/80 text-caramel-600 flex items-center justify-center mb-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-cocoa-800 text-base mb-1">Fresh From Oven</h3>
+                            <p class="text-xs text-cocoa-800/70 leading-relaxed">Dipanggang hangat setiap pagi, bukan stok kemarin.</p>
+                        </div>
+
+                        <!-- Keunggulan 3 -->
+                        <div class="bg-cream-50 p-4 rounded-2xl border border-cream-200 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-pastelpink-200/80 text-caramel-600 flex items-center justify-center mb-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-serif-title font-bold text-cocoa-800 text-base mb-1">Tanpa Pengawet</h3>
+                            <p class="text-xs text-cocoa-800/70 leading-relaxed">Aman & sehat dinikmati anak-anak hingga seluruh keluarga.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. PROMO & PAKET HAMPERS ==================== -->
+    <section id="hampers" class="py-20 md:py-24 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-pastelpink-100 via-pastelpink-200/70 to-cream-200 border border-pastelpink-300/60 shadow-warm p-8 sm:p-12 lg:p-16">
+                
+                <!-- Decorative Circle Blobs -->
+                <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-pastelpink-300/40 blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-caramel-400/15 blur-2xl pointer-events-none"></div>
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- Kiri: Penawaran & Daftar Paket -->
+                    <div class="lg:col-span-7">
+                        <span class="inline-block px-4 py-1.5 rounded-full bg-caramel-500 text-cream-50 text-xs font-bold tracking-wider uppercase mb-4">
+                            Spesial Momen Berharga 🎁
+                        </span>
+                        <h2 class="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-bold text-cocoa-800 leading-tight mb-4">
+                            Custom Birthday Cake & Hampers Acara Spesial
+                        </h2>
+                        <p class="text-cocoa-800/80 text-base leading-relaxed mb-6">
+                            Rayakan ulang tahun, wisuda, lamaran, hingga bingkisan hari raya dengan kotak hampers eksklusif berisi pilihan pastry terbaik Sweeat Pircuy. Gratis kartu ucapan tulisan tangan!
+                        </p>
+
+                        <!-- Daftar Paket Singkat -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="bg-white/85 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-serif-title font-bold text-cocoa-800">Sweet Box Hampers (Isi 6)</span>
+                                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-pastelpink-200 text-cocoa-800">Mulai Rp 155rb</span>
+                                </div>
+                                <p class="text-xs text-cocoa-800/70">Mix Croissant, Cromboloni & Cinnamon Roll dalam box pita satin.</p>
+                            </div>
+                            <div class="bg-white/85 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-serif-title font-bold text-cocoa-800">Korean Aesthetic Cake</span>
+                                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-pastelpink-200 text-cocoa-800">Mulai Rp 185rb</span>
+                                </div>
+                                <p class="text-xs text-cocoa-800/70">Desain pastel custom sesuai request, lembut dan tidak terlalu manis.</p>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/6281234567890?text=Halo%20Sweeat%20Pircuy,%20saya%20ingin%20konsultasi%20pemesanan%20Hampers%20/%20Custom%20Cake" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center gap-2.5 bg-caramel-600 hover:bg-caramel-700 text-cream-50 font-semibold px-8 py-4 rounded-full shadow-warm transition-all duration-300 transform hover:-translate-y-0.5">
+                            <span>Konsultasi Hampers & Custom Cake</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Kanan: Visual Hampers / Cake -->
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-3xl overflow-hidden shadow-warm border-4 border-white/90 aspect-[4/3]">
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80" 
+                                 alt="Custom Cake & Hampers Sweeat Pircuy"
+                                 onerror="this.src='https://placehold.co/900x675/FAF3EE/8B5A2B?text=Custom+Cake+%26+Hampers'"
+                                 class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-2xl text-center">
+                                <p class="text-xs font-semibold text-cocoa-800">✨ Diskon 10% untuk pemesanan H-3 acara spesial!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. TESTIMONI PELANGGAN ==================== -->
+    <section id="testimoni" class="py-20 md:py-24 bg-cream-100/60 border-t border-cream-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-xs uppercase tracking-[0.25em] text-caramel-500 font-bold block mb-2">Kata Mereka</span>
+                <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-cocoa-800 mb-3">
+                    Cerita Manis dari Pelanggan
+                </h2>
+                <p class="text-cocoa-800/75 text-sm sm:text-base">
+                    Kebahagiaan terbesar kami adalah melihat senyum di setiap gigitan pertama Anda.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimoni 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-soft border border-cream-200/80 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4" aria-label="Rating 5 dari 5 bintang">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-cocoa-800/85 text-sm sm:text-base italic leading-relaxed mb-6">
+                            "Croissant cokelat lumernya juara banget! Begitu masuk rumah aromanya wangi butter semerbak, luarnya crispy tapi dalamnya lembut dan cokelatnya nggak bikin enek."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-100">
+                        <div class="w-10 h-10 rounded-full bg-pastelpink-200 text-cocoa-800 font-serif-title font-bold flex items-center justify-center">
+                            A
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-cocoa-800">Anindya Putri</h4>
+                            <span class="text-xs text-cocoa-800/60">Pecinta Pastry</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimoni 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-soft border border-cream-200/80 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4" aria-label="Rating 5 dari 5 bintang">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-cocoa-800/85 text-sm sm:text-base italic leading-relaxed mb-6">
+                            "Pesan Sweet Box Hampers buat ulang tahun sahabat, packaging-nya estetik banget bernuansa pastel! Semua isiannya masih hangat dan segar saat sampai."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-100">
+                        <div class="w-10 h-10 rounded-full bg-cream-200 text-caramel-600 font-serif-title font-bold flex items-center justify-center">
+                            R
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-cocoa-800">Rizky Pratama</h4>
+                            <span class="text-xs text-cocoa-800/60">Pelanggan Setia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimoni 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-soft border border-cream-200/80 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4" aria-label="Rating 5 dari 5 bintang">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-cocoa-800/85 text-sm sm:text-base italic leading-relaxed mb-6">
+                            "Thai Milk Bun dan Burnt Cheesecake-nya wajib coba! Manisnya pas, teksturnya super lembut, anak-anak di rumah selalu minta dibelikan setiap akhir pekan."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-100">
+                        <div class="w-10 h-10 rounded-full bg-pastelpink-200 text-cocoa-800 font-serif-title font-bold flex items-center justify-center">
+                            N
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-cocoa-800">Nadia Larasati</h4>
+                            <span class="text-xs text-cocoa-800/60">Ibu Rumah Tangga</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 7. LOKASI & FOOTER ==================== -->
+    <section id="lokasi" class="py-20 bg-cream-50 border-t border-cream-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-[2rem] p-8 sm:p-12 shadow-soft border border-cream-200 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Info Alamat & Jam Buka -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.25em] text-caramel-500 font-bold block mb-2">Kunjungi Toko Kami</span>
+                        <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-cocoa-800">
+                            Mampir & Nikmati Aroma Roti Hangat Langsung
+                        </h2>
+                    </div>
+
+                    <div class="space-y-4 text-sm sm:text-base text-cocoa-800/85">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-9 h-9 rounded-xl bg-pastelpink-100 text-caramel-600 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-cocoa-800">Alamat Outlet Utama</p>
+                                <p class="text-cocoa-800/75">Jl. Melati Manis No. 28, Kebayoran Baru, Jakarta Selatan 12160</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-9 h-9 rounded-xl bg-pastelpink-100 text-caramel-600 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-cocoa-800">Jam Operasional</p>
+                                <p class="text-cocoa-800/75">Senin – Minggu: 07.00 – 21.00 WIB</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-9 h-9 rounded-xl bg-pastelpink-100 text-caramel-600 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-cocoa-800">WhatsApp & Telepon</p>
+                                <p class="text-cocoa-800/75">+62 812-3456-7890</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://maps.google.com/?q=Jakarta+Selatan" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 bg-cream-100 hover:bg-pastelpink-200 text-cocoa-800 border border-caramel-400/30 font-semibold px-6 py-3 rounded-full transition-colors">
+                            <span>Buka di Google Maps</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Visual Storefront / Map Preview Card -->
+                <div class="lg:col-span-6">
+                    <div class="relative rounded-3xl overflow-hidden border border-cream-200 h-72 sm:h-80 bg-cream-100">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Interior Cozy Cafe & Bakery Sweeat Pircuy"
+                             onerror="this.src='https://placehold.co/1000x700/FAF3EE/8B5A2B?text=Sweeat+Pircuy+Store'"
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cocoa-900/60 via-transparent to-transparent flex items-end p-6">
+                            <div class="text-cream-50">
+                                <p class="font-serif-title text-xl font-bold">Sweeat Pircuy Flagship Store</p>
+                                <p class="text-xs text-cream-100/90">Tersedia area dine-in estetik & layanan pesan antar instan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-cocoa-800 text-cream-100 pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-cream-100/10">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-5 space-y-4">
+                    <a href="#home" class="inline-flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-pastelpink-300/20 flex items-center justify-center text-pastelpink-300">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4.6 13.11a3 3 0 0 0-1.1 4.1 3.5 3.5 0 0 0 4.8 1.29l1.2-.7"/>
+                                <path d="M19.4 13.11a3 3 0 0 1 1.1 4.1 3.5 3.5 0 0 1-4.8 1.29l-1.2-.7"/>
+                                <path d="M8.5 16.5c-1.5-2.5-1.5-6.5 0-9 1.5-2.5 5.5-2.5 7 0 1.5 2.5 1.5 6.5 0 9-1.5 2.5-5.5 2.5-7 0Z"/>
+                            </svg>
+                        </div>
+                        <span class="font-serif-title text-2xl font-bold text-cream-50">
+                            Sweeat <span class="text-pastelpink-300 italic">Pircuy</span>
+                        </span>
+                    </a>
+                    <p class="text-sm text-cream-100/70 max-w-sm leading-relaxed">
+                        Menghadirkan kehangatan roti dan pastry artisan buatan tangan dengan 100% mentega murni dan bahan alami berkualitas tinggi setiap hari.
+                    </p>
+                </div>
+
+                <!-- Navigasi Cepat -->
+                <div class="md:col-span-4">
+                    <h4 class="font-serif-title text-lg font-bold text-cream-50 mb-4">Navigasi Cepat</h4>
+                    <ul class="space-y-2.5 text-sm text-cream-100/75">
+                        <li><a href="#home" class="hover:text-pastelpink-300 transition-colors">Beranda</a></li>
+                        <li><a href="#menu" class="hover:text-pastelpink-300 transition-colors">Menu Unggulan</a></li>
+                        <li><a href="#tentang" class="hover:text-pastelpink-300 transition-colors">Tentang Kami</a></li>
+                        <li><a href="#hampers" class="hover:text-pastelpink-300 transition-colors">Hampers & Custom Cake</a></li>
+                        <li><a href="#lokasi" class="hover:text-pastelpink-300 transition-colors">Lokasi & Jam Buka</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sosial Media -->
+                <div class="md:col-span-3">
+                    <h4 class="font-serif-title text-lg font-bold text-cream-50 mb-4">Ikuti Kami</h4>
+                    <p class="text-sm text-cream-100/70 mb-4">Dapatkan update menu baru & promo mingguan di media sosial kami:</p>
+                    <div class="flex items-center gap-3">
+                        <!-- Instagram -->
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Sweeat Pircuy" 
+                           class="w-10 h-10 rounded-full bg-cream-100/10 hover:bg-pastelpink-300 hover:text-cocoa-800 flex items-center justify-center transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok Sweeat Pircuy" 
+                           class="w-10 h-10 rounded-full bg-cream-100/10 hover:bg-pastelpink-300 hover:text-cocoa-800 flex items-center justify-center transition-all">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 text-center text-xs sm:text-sm text-cream-100/60">
+                <p>&copy; 2026 Sweeat Pircuy Bakery. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL KONFIRMASI PESANAN WHATSAPP ==================== -->
+    <div id="order-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-cocoa-900/50 backdrop-blur-sm transition-opacity">
+        <div class="bg-cream-50 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-warm border border-cream-200 relative transform transition-all">
+            <!-- Close Button -->
+            <button onclick="closeOrderModal()" aria-label="Tutup Modal" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-cream-100 hover:bg-pastelpink-200 text-cocoa-800 flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <span class="inline-block px-3 py-1 rounded-full bg-pastelpink-200 text-cocoa-800 text-xs font-bold mb-3">
+                Pesan Cepat via WhatsApp
+            </span>
+            <h3 id="modal-product-name" class="font-serif-title text-2xl font-bold text-cocoa-800 mb-1">
+                Nama Produk
+            </h3>
+            <p id="modal-product-price" class="text-caramel-600 font-bold text-base mb-5">
+                Rp 0
+            </p>
+
+            <!-- Pilih Jumlah -->
+            <div class="mb-4">
+                <label class="block text-xs font-bold uppercase tracking-wider text-cocoa-800/70 mb-2">Jumlah Pesanan</label>
+                <div class="flex items-center gap-4">
+                    <button type="button" onclick="updateQty(-1)" class="w-10 h-10 rounded-full bg-cream-100 hover:bg-pastelpink-200 text-cocoa-800 font-bold text-lg flex items-center justify-center transition-colors">-</button>
+                    <span id="modal-qty" class="text-lg font-bold text-cocoa-800 w-8 text-center">1</span>
+                    <button type="button" onclick="updateQty(1)" class="w-10 h-10 rounded-full bg-cream-100 hover:bg-pastelpink-200 text-cocoa-800 font-bold text-lg flex items-center justify-center transition-colors">+</button>
+                </div>
+            </div>
+
+            <!-- Catatan Opsional -->
+            <div class="mb-6">
+                <label for="modal-notes" class="block text-xs font-bold uppercase tracking-wider text-cocoa-800/70 mb-2">Catatan (Opsional)</label>
+                <input id="modal-notes" type="text" placeholder="Contoh: Hangatkan sebentar, kirim jam 3 sore..." 
+                       class="w-full px-4 py-3 rounded-2xl bg-white border border-cream-200 text-sm text-cocoa-800 focus:outline-none focus:border-caramel-500">
+            </div>
+
+            <!-- Total & Tombol Kirim WA -->
+            <div class="flex items-center justify-between pt-4 border-t border-cream-200 mb-5">
+                <span class="text-sm font-medium text-cocoa-800/75">Estimasi Total:</span>
+                <span id="modal-total" class="text-xl font-bold text-caramel-600">Rp 0</span>
+            </div>
+
+            <button onclick="sendWhatsAppOrder()" class="w-full flex items-center justify-center gap-2 bg-caramel-500 hover:bg-caramel-600 text-cream-50 font-semibold py-3.5 px-6 rounded-full shadow-warm transition-all cursor-pointer">
+                <span>Lanjut ke WhatsApp</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT INTERAKTIVITAS ==================== -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMobileMenu() {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // Tutup menu mobile otomatis saat link navigasi diklik
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            });
+        });
+
+        // 2. Filter Kategori Menu
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset style tombol aktif
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-caramel-500', 'text-cream-50', 'shadow-soft');
+                    b.classList.add('bg-cream-100', 'text-cocoa-800');
+                });
+                
+                // Aktifkan tombol yang diklik
+                btn.classList.remove('bg-cream-100', 'text-cocoa-800');
+                btn.classList.add('bg-caramel-500', 'text-cream-50', 'shadow-soft');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 3. Modal Pemesanan Produk ke WhatsApp
+        let selectedProduct = '';
+        let selectedPrice = 0;
+        let currentQty = 1;
+
+        const orderModal = document.getElementById('order-modal');
+        const modalProductName = document.getElementById('modal-product-name');
+        const modalProductPrice = document.getElementById('modal-product-price');
+        const modalQty = document.getElementById('modal-qty');
+        const modalTotal = document.getElementById('modal-total');
+        const modalNotes = document.getElementById('modal-notes');
+
+        function formatRupiah(angka) {
+            return 'Rp ' + angka.toLocaleString('id-ID');
+        }
+
+        function openOrderModal(productName, price) {
+            selectedProduct = productName;
+            selectedPrice = price;
+            currentQty = 1;
+            modalNotes.value = '';
+
+            modalProductName.textContent = productName;
+            modalProductPrice.textContent = formatRupiah(price) + ' / item';
+            modalQty.textContent = currentQty;
+            modalTotal.textContent = formatRupiah(selectedPrice * currentQty);
+
+            orderModal.classList.remove('hidden');
+            orderModal.classList.add('flex');
+        }
+
+        function closeOrderModal() {
+            orderModal.classList.add('hidden');
+            orderModal.classList.remove('flex');
+        }
+
+        function updateQty(change) {
+            if (currentQty + change >= 1) {
+                currentQty += change;
+                modalQty.textContent = currentQty;
+                modalTotal.textContent = formatRupiah(selectedPrice * currentQty);
+            }
+        }
+
+        function sendWhatsAppOrder() {
+            const phoneNumber = '6281234567890';
+            const notes = modalNotes.value.trim();
+            const totalFormatted = formatRupiah(selectedPrice * currentQty);
+
+            let message = `Halo Sweeat Pircuy! Saya ingin memesan:\n\n`;
+            message += `• Produk: *${selectedProduct}*\n`;
+            message += `• Jumlah: *${currentQty}*\n`;
+            message += `• Estimasi Total: *${totalFormatted}*\n`;
+            if (notes) {
+                message += `• Catatan: ${notes}\n`;
+            }
+            message += `\nMohon info ketersediaan dan detail pembayarannya ya. Terima kasih!`;
+
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            closeOrderModal();
+        }
+
+        // Tutup modal jika area luar modal diklik
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) {
+                closeOrderModal();
+            }
+        });
+    </script>
+</body>
+</html>
